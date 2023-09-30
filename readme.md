@@ -66,9 +66,23 @@ pandas: For CSV Ingestor.
 python-docx: For DOCX Ingestor.
 PyMuPDF: For PDF Ingestor.
 Usage Example:
+```sh
 from QuoteEngine import CSVIngestor, DOCXIngestor
 csv_quotes = CSVIngestor.parse('path_to_csv_file')
 docx_quotes = DOCXIngestor.parse('path_to_docx_file')
+```
+
+Generate Custom Meme
+To generate a custom meme, you can provide the following command-line arguments:
+
+--path: Path to an image file.
+--body: Quote body to add to the image.
+--author: Quote author to add to the image.
+Run the following command to generate a custom meme:
+
+```sh
+python <script-name> --path <image-path> --body "Your Quote Here" --author "Author Name"
+```
 
 # Conclusion
 This project provides hands-on experience in designing a system with various components working in unison, implementing object-oriented programming concepts, and utilizing advanced Python libraries for practical application development. It is an exemplar demonstration of building a multimedia application using Python, integrating diverse libraries and maintaining modular, scalable, and robust code.
