@@ -41,8 +41,10 @@ Responsibility: Ingests various types of files containing quotes.
 
 Dependencies: None
 Usage Example:
-```from QuoteEngine import Ingestor
-quotes = Ingestor.parse('path_to_quote_file')```
+```sh
+from QuoteEngine import Ingestor
+quotes = Ingestor.parse('path_to_quote_file')
+```
 
 # Meme Engine Module
 Responsibility: Manipulates and draws text onto images.
@@ -50,9 +52,11 @@ Responsibility: Manipulates and draws text onto images.
 Dependencies:
 Pillow: For loading, resizing, and drawing text on images.
 Usage Example:
+```sh
 from MemeEngine import MemeEngine
 meme_engine = MemeEngine('output_directory')
 meme_engine.make_meme('path_to_image', 'quote text', 'author')
+```
 
 # Various Ingestors
 Responsibility: Serve as strategy objects realizing the Ingestor Interface for each file type (csv, docx, pdf, txt).
