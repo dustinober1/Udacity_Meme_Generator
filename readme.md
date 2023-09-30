@@ -32,6 +32,7 @@ This project is designed to build a "meme generator" – a multimedia applicatio
 ## Running the Program
    ```sh
    python main.py
+   ```
 
 # Modules Overview
 
@@ -40,8 +41,8 @@ Responsibility: Ingests various types of files containing quotes.
 
 Dependencies: None
 Usage Example:
-from QuoteEngine import Ingestor
-quotes = Ingestor.parse('path_to_quote_file')
+```from QuoteEngine import Ingestor
+quotes = Ingestor.parse('path_to_quote_file')```
 
 # Meme Engine Module
 Responsibility: Manipulates and draws text onto images.
