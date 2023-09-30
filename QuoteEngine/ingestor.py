@@ -1,9 +1,11 @@
 # ingestor.py
+from typing import List
 from .ingestor_interface import IngestorInterface
 from .csv_ingestor import CSVIngestor
 from .docx_ingestor import DOCXIngestor
 from .pdf_ingestor import PDFIngestor
 from .txt_ingestor import TXTIngestor
+from .quote_model import QuoteModel
 
 class Ingestor(IngestorInterface):
     

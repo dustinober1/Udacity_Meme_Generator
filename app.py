@@ -3,7 +3,7 @@ import random
 import requests
 from flask import Flask, render_template, request
 from QuoteEngine import ingestor, quote_model
-from MemeGenerator import MemeEngine
+from MemeGenerator.meme_engine import MemeEngine
 
 app = Flask(__name__)
 meme = MemeEngine('./static')
@@ -19,7 +19,7 @@ def setup():
     
     quotes = []
     for f in quote_files:
-        quotes.extend(Ingestor.parse(f))
+        quotes.extend(ingestor.parse(f))
     
     images_path = "./_data/photos/dog/"
     imgs = [os.path.join(images_path, name) for name in os.listdir(images_path) if os.path.isfile(os.path.join(images_path, name))]

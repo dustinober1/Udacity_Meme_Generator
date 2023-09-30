@@ -1,4 +1,5 @@
 # csv_ingestor.py
+from typing import List
 import pandas as pd
 from .ingestor_interface import IngestorInterface
 from .quote_model import QuoteModel
