@@ -2,7 +2,7 @@ import os
 import random
 import requests
 from flask import Flask, render_template, request
-from QuoteEngine import Ingestor, QuoteModel
+from QuoteEngine import ingestor, quote_model
 from MemeGenerator import MemeEngine
 
 app = Flask(__name__)
