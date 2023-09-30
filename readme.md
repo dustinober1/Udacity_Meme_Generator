@@ -30,9 +30,10 @@ This project is designed to build a "meme generator" – a multimedia applicatio
     pip install -r requirements.txt
 
 ## Running the Program
-python main.py
+   ```sh
+   python main.py
 
-Modules Overview
+# Modules Overview
 
 # Quote Engine Module
 Responsibility: Ingests various types of files containing quotes.
