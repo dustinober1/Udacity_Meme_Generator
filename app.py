@@ -2,14 +2,19 @@ import os
 import random
 import requests
 from flask import Flask, render_template, request
-from QuoteEngine import ingestor, quote_model
+from QuoteEngine.ingestor import Ingestor
+from QuoteEngine import quote_model
 from MemeGenerator.meme_engine import MemeEngine
 
 app = Flask(__name__)
 meme = MemeEngine('./static')
 
 def setup():
-    """ Load all resources """
+    """ 
+    Load all resources including quote files and images.
+    
+    :return: Tuple containing a list of quotes and a list of image paths.
+    """
     quote_files = [
         './_data/DogQuotes/DogQuotesTXT.txt',
         './_data/DogQuotes/DogQuotesDOCX.docx',
@@ -19,7 +24,7 @@ def setup():
     
     quotes = []
     for f in quote_files:
-        quotes.extend(ingestor.parse(f))
+        quotes.extend(Ingestor.parse(f))
     
     images_path = "./_data/photos/dog/"
     imgs = [os.path.join(images_path, name) for name in os.listdir(images_path) if os.path.isfile(os.path.join(images_path, name))]
@@ -29,10 +34,13 @@ def setup():
 
 quotes, imgs = setup()
 
-
 @app.route('/')
 def meme_rand():
-    """ Generate a random meme """
+    """ 
+    Generate and display a random meme.
+    
+    :return: Rendered template displaying a random meme.
+    """
     img = random.choice(imgs)
     quote = random.choice(quotes)
     path = meme.make_meme(img, quote.body, quote.author)
@@ -41,13 +49,21 @@ def meme_rand():
 
 @app.route('/create', methods=['GET'])
 def meme_form():
-    """ User input for meme information """
+    """ 
+    Display form for user to input meme information.
+    
+    :return: Rendered template displaying the form.
+    """
     return render_template('meme_form.html')
 
 
 @app.route('/create', methods=['POST'])
 def meme_post():
-    """ Create a user defined meme """
+    """ 
+    Create and display a user-defined meme based on form input.
+    
+    :return: Rendered template displaying the user-defined meme or an error message.
+    """
     image_url = request.form['image_url']
     body = request.form['body']
     author = request.form['author']
