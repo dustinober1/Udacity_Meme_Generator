@@ -8,8 +8,8 @@ from flask import Flask, render_template, request
 from QuoteEngine.ingestor import Ingestor
 from MemeGenerator.meme_engine import MemeEngine
 
-app = Flask(__name__)
-meme = MemeEngine('./static')
+app = Flask(__name__, static_folder='_data/photos/dog')
+meme = MemeEngine('./_data/photos/dog/')
 
 def setup():
     """ 

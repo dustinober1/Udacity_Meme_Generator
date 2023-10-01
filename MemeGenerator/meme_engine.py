@@ -19,8 +19,8 @@ class MemeEngine:
         
         :param output_dir: The directory where the generated memes will be saved.
         """
-        self._output_dir = output_dir  # Setting the output directory for the memes
-        os.makedirs(output_dir, exist_ok=True)  # Creating the output directory if it does not exist
+        self._output_dir = output_dir
+        os.makedirs(output_dir, exist_ok=True)
 
     def make_meme(self, img_path: str, text: str, author: str, width=500) -> str:
         """
@@ -39,7 +39,7 @@ class MemeEngine:
             img = img.resize((width, height), Image.NEAREST)
 
             draw = ImageDraw.Draw(img)
-            font = ImageFont.load_default()
+            font = ImageFont.truetype("arial.ttf", size=12)
             text = f"{text} - {author}"
             text_position = (10, img.height - 30)
             draw.text(text_position, text, font=font, fill="white")
