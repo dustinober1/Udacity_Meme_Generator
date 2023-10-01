@@ -1,3 +1,6 @@
+"""
+This modeule acts and the inteface for the other injestor modeules.
+"""
 from abc import ABC, abstractmethod
 from typing import List
 from .quote_model import QuoteModel
@@ -11,7 +14,7 @@ class IngestorInterface(ABC):
     Concrete ingestor classes are responsible for parsing quotes from files with
     different formats and returning a list of QuoteModel objects.
     """
-    
+
     @classmethod
     @abstractmethod
     def can_ingest(cls, path: str) -> bool:
@@ -21,8 +24,7 @@ class IngestorInterface(ABC):
         :param path: String representing the path of the file to be ingested.
         :return: Boolean, True if the file can be ingested, False otherwise.
         """
-        pass
-    
+
     @classmethod
     @abstractmethod
     def parse(cls, path: str) -> List[QuoteModel]:
@@ -32,4 +34,3 @@ class IngestorInterface(ABC):
         :param path: String representing the path of the file to be parsed.
         :return: List of QuoteModel objects representing the quotes found in the file.
         """
-        pass
