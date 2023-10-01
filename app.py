@@ -8,13 +8,13 @@ from flask import Flask, render_template, request
 from QuoteEngine.ingestor import Ingestor
 from MemeGenerator.meme_engine import MemeEngine
 
-app = Flask(__name__, static_folder='_data/photos/dog')
-meme = MemeEngine('./_data/photos/dog/')
+app = Flask(__name__)
+meme = MemeEngine('static')
 
 def setup():
     """ 
     Load all resources including quote files and images.
-    
+
     :return: Tuple containing a list of quotes and a list of image paths.
     """
     quote_files = [

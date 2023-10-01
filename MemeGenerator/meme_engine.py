@@ -39,7 +39,7 @@ class MemeEngine:
             img = img.resize((width, height), Image.NEAREST)
 
             draw = ImageDraw.Draw(img)
-            font = ImageFont.truetype("arial.ttf", size=12)
+            font = ImageFont.truetype("georgia/georgia.ttf", size=12)
             text = f"{text} - {author}"
             text_position = (10, img.height - 30)
             draw.text(text_position, text, font=font, fill="white")
