@@ -29,9 +29,8 @@ def setup():
         quotes.extend(Ingestor.parse(file))
 
     images_path = "./_data/photos/dog/"
-    imgs = [os.path.join(images_path, name) for name in
-            os.listdir(images_path) if os.path.isfile
-            (os.path.join(images_path, name))]
+    imgs = [os.path.join(images_path, name) for name in os.listdir(images_path)
+            if os.path.isfile(os.path.join(images_path, name))]
     return quotes, imgs
 
 quotes, imgs = setup()

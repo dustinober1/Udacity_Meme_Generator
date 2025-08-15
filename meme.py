@@ -15,10 +15,8 @@ def generate_meme(path=None, body=None, author=None):
 
     if path is None:
         images = "./_data/photos/dog/"
-        imgs = [
-            os.path.join(images, name)
-            for name in os.listdir(images)
-            if os.path.isfile(os.path.join(images, name))]
+        imgs = [os.path.join(images, name) for name in os.listdir(images)
+                if os.path.isfile(os.path.join(images, name))]
         img = random.choice(imgs)
     else:
         img = path

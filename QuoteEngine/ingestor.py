@@ -1,5 +1,5 @@
 """
-This file integrates with the other injester modules
+This file integrates with the other ingestor modules
 """
 from typing import List
 from .ingestor_interface import IngestorInterface
