@@ -1,88 +1,145 @@
-# Meme Generator Project
+# Meme Generator
 
-## Overview
-This project is designed to build a "meme generator" – a multimedia application to dynamically generate memes, including an image with an overlaid quote. It demonstrates a profound understanding of Python principles including complex inheritance, abstract classes, class methods, and strategy objects, along with utilizing advanced third-party libraries for image manipulation.
+A multimedia application that dynamically generates memes by overlaying quotes on images. This project demonstrates object-oriented programming principles including inheritance, abstract classes, and the strategy pattern.
 
-## Table of Contents
-- [Setting Up and Running the Program](#setting-up-and-running-the-program)
-  - [Prerequisites](#prerequisites)
-  - [Installation Steps](#installation-steps)
-  - [Running the Program](#running-the-program)
-- [Modules Overview](#modules-overview)
-  - [1. Quote Engine Module](#1-quote-engine-module)
-  - [2. Meme Engine Module](#2-meme-engine-module)
-  - [3. Various Ingestors](#3-various-ingestors)
-- [Conclusion](#conclusion)
+## Features
 
-## Setting Up and Running the Program
+- **Web Interface**: Flask-based web application for interactive meme generation
+- **Command Line Interface**: Generate memes directly from the terminal
+- **Multiple File Format Support**: Ingest quotes from CSV, DOCX, PDF, and TXT files
+- **Custom Meme Creation**: Upload images and add custom quotes
+- **Random Meme Generation**: Generate memes with random quotes and images
+
+## Installation
 
 ### Prerequisites
-- Python 3.x
-- pip (Python’s package installer)
+- Python 3.7 or higher
+- pip (Python package installer)
 
-### Installation Steps
-1. Clone the repository
-   ```sh
+### Setup
+1. Clone the repository:
+   ```bash
    git clone <repository-url>
-   cd <repository-directory>
-
-2. Install the required packages
-    pip install -r requirements.txt
-
-## Running the Program
-   ```sh
-   python main.py
+   cd Udacity_Meme_Generator
    ```
 
-# Modules Overview
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-# Quote Engine Module
-Responsibility: Ingests various types of files containing quotes.
+3. (Optional) Install the package:
+   ```bash
+   pip install -e .
+   ```
 
-Dependencies: None
-Usage Example:
-```sh
-from QuoteEngine import Ingestor
-quotes = Ingestor.parse('path_to_quote_file')
+## Usage
+
+### Web Application
+Start the Flask web server:
+```bash
+python app.py
+```
+Visit `http://localhost:5000` in your browser to use the web interface.
+
+### Command Line Interface
+Generate a random meme:
+```bash
+python meme.py
 ```
 
-# Meme Engine Module
-Responsibility: Manipulates and draws text onto images.
-
-Dependencies:
-Pillow: For loading, resizing, and drawing text on images.
-Usage Example:
-```sh
-from MemeEngine import MemeEngine
-meme_engine = MemeEngine('output_directory')
-meme_engine.make_meme('path_to_image', 'quote text', 'author')
+Generate a custom meme:
+```bash
+python meme.py --path "./path/to/image.jpg" --body "Your quote here" --author "Author Name"
 ```
 
-# Various Ingestors
-Responsibility: Serve as strategy objects realizing the Ingestor Interface for each file type (csv, docx, pdf, txt).
+## Project Structure
 
-Dependencies:
-pandas: For CSV Ingestor.
-python-docx: For DOCX Ingestor.
-PyMuPDF: For PDF Ingestor.
-Usage Example:
-```sh
-from QuoteEngine import CSVIngestor, DOCXIngestor
-csv_quotes = CSVIngestor.parse('path_to_csv_file')
-docx_quotes = DOCXIngestor.parse('path_to_docx_file')
+```
+Udacity_Meme_Generator/
+├── MemeGenerator/          # Meme generation engine
+│   ├── __init__.py
+│   └── meme_engine.py
+├── QuoteEngine/           # Quote ingestion system
+│   ├── __init__.py
+│   ├── ingestor_interface.py
+│   ├── ingestor.py
+│   ├── csv_ingestor.py
+│   ├── docx_ingestor.py
+│   ├── pdf_ingestor.py
+│   ├── txt_ingestor.py
+│   └── quote_model.py
+├── _data/                 # Sample data files
+├── templates/             # HTML templates
+├── static/                # Static web assets
+├── app.py                 # Flask web application
+├── meme.py               # Command line interface
+└── requirements.txt      # Python dependencies
 ```
 
-Generate Custom Meme
-To generate a custom meme, you can provide the following command-line arguments:
+## Modules Overview
 
---path: Path to an image file.
---body: Quote body to add to the image.
---author: Quote author to add to the image.
-Run the following command to generate a custom meme:
+### Quote Engine Module
+Responsible for ingesting quotes from various file formats using the strategy pattern.
 
-```sh
-python <script-name> --path <image-path> --body "Your Quote Here" --author "Author Name"
+**Key Components:**
+- `IngestorInterface`: Abstract base class defining the ingestor contract
+- `Ingestor`: Main class that selects appropriate ingestor based on file type
+- Individual ingestors for CSV, DOCX, PDF, and TXT files
+- `QuoteModel`: Data class representing a quote with body and author
+
+**Usage:**
+```python
+from QuoteEngine.ingestor import Ingestor
+quotes = Ingestor.parse('path/to/quotes.csv')
 ```
 
-# Conclusion
-This project provides hands-on experience in designing a system with various components working in unison, implementing object-oriented programming concepts, and utilizing advanced Python libraries for practical application development. It is an exemplar demonstration of building a multimedia application using Python, integrating diverse libraries and maintaining modular, scalable, and robust code.
+### Meme Engine Module
+Handles image manipulation and text overlay for meme generation.
+
+**Features:**
+- Image resizing and optimization
+- Text overlay with custom fonts
+- Automatic text positioning
+- Multiple output formats
+
+**Usage:**
+```python
+from MemeGenerator.meme_engine import MemeEngine
+meme_engine = MemeEngine('./output')
+path = meme_engine.make_meme('image.jpg', 'Quote text', 'Author')
+```
+
+## Dependencies
+
+- **Flask**: Web framework for the web interface
+- **Pillow**: Image processing and manipulation
+- **requests**: HTTP library for downloading images
+- **pandas**: CSV file processing
+- **python-docx**: Microsoft Word document processing
+- **PyMuPDF**: PDF file processing
+
+## Development
+
+### Running Tests
+```bash
+python -m pytest tests/
+```
+
+### Code Style
+This project follows PEP 8 style guidelines. Run syntax checks:
+```bash
+python -m py_compile **/*.py
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## License
+
+This project is part of the Udacity Intermediate Python Nanodegree program.
